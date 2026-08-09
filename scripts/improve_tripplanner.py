@@ -117,8 +117,54 @@ def improv_style_polish(css):
     return css.rstrip() + "\n\n" + add, "Add trust strip/FAQ/scroll-smooth styles"
 
 
-IMPROVEMENTS = [improv_why_us, improv_faq, improv_results_note, improv_style_polish]
-FILE_FOR = {improv_why_us: INDEX, improv_faq: INDEX, improv_results_note: INDEX, improv_style_polish: CSS}
+def improv_airbnb_cards(css):
+    """Airbnb-style cards: warm 3-layer shadow, bigger radius, image zoom on hover."""
+    marker = "/*impr:airbnb_cards*/"
+    if marker in css: return None
+    add = (
+        marker + "\n"
+        # 3-layer warm shadow (Airbnb: ring + soft + lift) + 20px radius
+        ".region-card, .how-card, .opt, .faq-item { border-radius:20px; }\n"
+        ".region-card { box-shadow: rgba(0,0,0,.18) 0 0 0 1px, rgba(0,0,0,.25) 0 2px 6px, rgba(0,0,0,.35) 0 8px 24px; }\n"
+        ".region-card:hover { box-shadow: rgba(0,0,0,.24) 0 0 0 1px, rgba(0,0,0,.3) 0 4px 10px, rgba(0,0,0,.45) 0 14px 34px; }\n"
+        # photography zoom like Airbnb listing cards
+        ".region-img { transition: transform .35s ease; }\n"
+        ".region-card:hover .region-img { transform: scale(1.06); }\n"
+    )
+    return css.rstrip() + "\n\n" + add, "Airbnb-style card shadows + image zoom"
+
+
+def improv_glass_nav(css):
+    """Stripe/Apple-style sticky glass header with blur backdrop."""
+    marker = "/*impr:glass_nav*/"
+    if marker in css: return None
+    add = (
+        marker + "\n"
+        ".site-header { position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); "
+        "background:rgba(7,11,20,.72); border-bottom:1px solid rgba(148,184,255,.1); }\n"
+    )
+    return css.rstrip() + "\n\n" + add, "Sticky glass nav (Stripe/Apple style)"
+
+
+def improv_glow_cta(css):
+    """Linear/Stripe-style gradient CTA with soft glow + subtle pulse on primary buttons."""
+    marker = "/*impr:glow_cta*/"
+    if marker in css: return None
+    add = (
+        marker + "\n"
+        ".btn-primary { background:linear-gradient(135deg,#ff5f6d,#ff9966); box-shadow:0 4px 20px rgba(255,95,109,.35); }\n"
+        ".btn-primary:hover { box-shadow:0 6px 28px rgba(255,95,109,.55); transform:translateY(-1px); }\n"
+        ".btn-big { background:linear-gradient(135deg,#7f5af0,#ff5f6d); box-shadow:0 4px 24px rgba(127,90,240,.4); }\n"
+        ".btn-big:hover { box-shadow:0 8px 34px rgba(127,90,240,.6); }\n"
+    )
+    return css.rstrip() + "\n\n" + add, "Glow gradient CTAs (Linear/Stripe style)"
+
+
+IMPROVEMENTS = [improv_why_us, improv_faq, improv_results_note, improv_style_polish,
+                improv_airbnb_cards, improv_glass_nav, improv_glow_cta]
+FILE_FOR = {improv_why_us: INDEX, improv_faq: INDEX, improv_results_note: INDEX,
+            improv_style_polish: CSS, improv_airbnb_cards: CSS, improv_glass_nav: CSS,
+            improv_glow_cta: CSS}
 
 
 def main():

@@ -165,10 +165,3 @@ section { padding: 90px 0; }
 .faq-item p { color:var(--muted); font-size:.92rem; }
 .results-note { text-align:center; color:var(--muted); font-size:.85rem; margin-top:18px; }
 html { scroll-behavior:smooth; }
-
-/*impr:airbnb_cards*/
-.region-card, .how-card, .opt, .faq-item { border-radius:20px; }
-.region-card { box-shadow: rgba(0,0,0,.18) 0 0 0 1px, rgba(0,0,0,.25) 0 2px 6px, rgba(0,0,0,.35) 0 8px 24px; }
-.region-card:hover { box-shadow: rgba(0,0,0,.24) 0 0 0 1px, rgba(0,0,0,.3) 0 4px 10px, rgba(0,0,0,.45) 0 14px 34px; }
-.region-img { transition: transform .35s ease; }
-.region-card:hover .region-img { transform: scale(1.06); }
