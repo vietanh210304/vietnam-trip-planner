@@ -1,5 +1,6 @@
 // ── Vietnam Trip Planner — UI logic ───────────────────────────────────────
 import { CITIES, INTERESTS, DURATIONS, BUDGETS, pickRoute, buildItinerary, transportOptions } from './data.js';
+import { REGION_IMAGES } from './images.js';
 import './style.css';
 
 const $ = (s) => document.querySelector(s);
@@ -117,8 +118,9 @@ function renderRegions() {
   const grid = $('#regions-grid'); grid.innerHTML = '';
   const emo = { hanoi: '🎯', halong: '⛵', ninhbinh: '⛰️', sapa: '🏔️', hue: '🎎', danang: '🌊', hoi_an: '🏮' };
   for (const [k, c] of Object.entries(CITIES)) {
+    const img = REGION_IMAGES[k] ? `<img class="region-img" src="${REGION_IMAGES[k]}" alt="${c.name}" loading="lazy" />` : `<div class="region-emoji">${emo[k]}</div>`;
     grid.insertAdjacentHTML('beforeend',
-      `<div class="region-card"><div class="region-emoji">${emo[k]}</div><h3>${c.name}</h3><p>${c.tagline}</p>` +
+      `<div class="region-card">${img}<h3>${c.name}</h3><p>${c.tagline}</p>` +
       `<div class="region-tags">${c.tags.map((t) => `<span>${INTERESTS[t].emoji}</span>`).join('')}</div></div>`);
   }
 }
