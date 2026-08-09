@@ -172,6 +172,3 @@ html { scroll-behavior:smooth; }
 .region-card:hover { box-shadow: rgba(0,0,0,.24) 0 0 0 1px, rgba(0,0,0,.3) 0 4px 10px, rgba(0,0,0,.45) 0 14px 34px; }
 .region-img { transition: transform .35s ease; }
 .region-card:hover .region-img { transform: scale(1.06); }
-
-/*impr:glass_nav*/
-.site-header { position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); background:rgba(7,11,20,.72); border-bottom:1px solid rgba(148,184,255,.1); }
