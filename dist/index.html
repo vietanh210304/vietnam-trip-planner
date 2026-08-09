@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam Trip Planner — Build your perfect itinerary</title>
+  <meta name="description" content="Answer a few questions and get a personalized Vietnam itinerary — routes, transport, costs. For a few days, a week, or a month." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/vietnam-trip-planner/assets/index-D-N5CZtb.js"></script>
+  <link rel="stylesheet" crossorigin href="/vietnam-trip-planner/assets/index-D6FM3dih.css">
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">🇻🇳 <span>Vietnam<span class="accent">Trip</span>Planner</span></a>
+      <nav class="nav">
+        <a href="#planner">Plan a trip</a>
+        <a href="#how">How it works</a>
+        <a href="#regions">Regions</a>
+      </nav>
+      <a href="#planner" class="btn btn-primary">Start planning →</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow">🇻🇳 YOUR VIETNAM, YOUR PACE</p>
+      <h1>From a long weekend<br />to a whole <span class="grad">month.</span></h1>
+      <p class="sub">Tell us how long you're staying and what you love — we'll map a route, the trains and buses between it, the cost, and an itinerary that actually fits your days.</p>
+      <div class="hero-cta">
+        <a href="#planner" class="btn btn-big btn-primary">Plan my itinerary</a>
+        <a href="#regions" class="btn btn-big btn-ghost">Explore regions</a>
+      </div>
+      <div class="hero-stats">
+        <span><strong>7</strong> regions</span>
+        <span><strong>40+</strong> hand-picked activities</span>
+        <span><strong>3</strong> budgets</span>
+        <span><strong>∞</strong> combos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Planner ===== -->
+  <section class="planner-section" id="planner">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">THE PLANNER</p>
+        <h2>Build your Vietnam trip</h2>
+        <p>Three quick questions. We do the mapping.</p>
+      </div>
+
+      <div class="planner-card" id="planner-card">
+        <!-- Step 1: duration -->
+        <div class="planner-step" data-step="1">
+          <div class="step-head"><span class="step-num">1</span><h3>How long are you going?</h3></div>
+          <div class="opt-grid" id="dur-opts"></div>
+        </div>
+
+        <!-- Step 2: interests -->
+        <div class="planner-step" data-step="2" hidden>
+          <div class="step-head"><span class="step-num">2</span><h3>What do you love doing?</h3></div>
+          <p class="step-hint">Pick as many as you like.</p>
+          <div class="opt-grid chips" id="int-opts"></div>
+        </div>
+
+        <!-- Step 3: budget -->
+        <div class="planner-step" data-step="3" hidden>
+          <div class="step-head"><span class="step-num">3</span><h3>How do you like to travel?</h3></div>
+          <div class="opt-grid" id="bud-opts"></div>
+        </div>
+
+        <div class="planner-nav">
+          <button class="btn btn-ghost" id="btn-back" hidden onclick="showStep(state.step - 1)">← Back</button>
+          <button class="btn btn-primary" id="btn-next" hidden onclick="showStep(state.step + 1)">Next →</button>
+          <button class="btn btn-big btn-primary" id="btn-generate" hidden onclick="renderResults()">Generate my itinerary ✨</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Itinerary Results ===== -->
+  <section class="results-section" id="results" hidden>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">YOUR TRIP</p>
+        <h2 id="res-title">Your itinerary</h2>
+        <p id="res-sub" class="muted"></p>
+      </div>
+
+      <!-- Route map strip -->
+      <div class="route-strip" id="route-strip"></div>
+
+      <div class="results-grid">
+        <!-- Day-by-day itinerary -->
+        <div class="card itinerary-card">
+          <h3 class="card-title">🗓️ Day-by-day</h3>
+          <div id="itinerary"></div>
+        </div>
+
+        <!-- Transport + costs -->
+        <div class="results-side">
+          <div class="card">
+            <h3 class="card-title">🚆 Getting around</h3>
+            <div id="transport"></div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">💰 Cost estimate</h3>
+            <div id="costs"></div>
+          </div>
+          <div class="card tips">
+            <h3 class="card-title">🧳 Good to know</h3>
+            <ul id="tips">
+              <li>Cash is king in small towns — keep some dong.</li>
+              <li>Grab is everywhere in Hanoi & Saigon.</li>
+              <li>Book sleeper trains a few days ahead.</li>
+              <li>HCM City / Sapa add-on: ask the planner with "month" mode.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">HOW IT WORKS</p>
+        <h2>Three answers. One trip.</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-card"><span class="how-ico">⏱️</span><h3>Tell us your time</h3><p>A few days, a week, or a month — we match how far you can realistically go.</p></div>
+        <div class="how-card"><span class="how-ico">🎯</span><h3>Pick your passions</h3><p>Foodie, nature, beaches, history… your interests steer every activity we pick.</p></div>
+        <div class="how-card"><span class="how-ico">🧮</span><h3>Get the full picture</h3><p>A day-by-day plan plus transport legs and a cost breakdown. No spreadsheets.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Regions ===== -->
+  <section class="regions-section" id="regions">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">THE REGIONS</p>
+        <h2>From the northern mountains to the central coast</h2>
+        <p class="muted">Every region is a 1–3 day hop. Mix and match — the planner does the routing.</p>
+      </div>
+      <div class="regions-grid" id="regions-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>🇻🇳 VietnamTripPlanner — a demo planner. Prices are rough estimates in USD.</p>
+      <p>Built with vanilla JS + Vite. <a href="https://github.com/vietanh210304/vietnam-trip-planner" target="_blank" rel="noopener">Source on GitHub</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

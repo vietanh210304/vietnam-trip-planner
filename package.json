@@ -1,0 +1,15 @@
+{
+  "name": "vietnam-trip-planner",
+  "version": "1.0.0",
+  "description": "Personalized Vietnam itinerary generator — trips for a few days, a week, or a month",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node test/engine.test.mjs"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
