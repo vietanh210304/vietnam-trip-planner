@@ -156,12 +156,3 @@ section { padding: 90px 0; }
 .hero-inner > *:nth-child(4) { animation-delay: .24s; }
 .hero-inner > *:nth-child(5) { animation-delay: .32s; }
 .opt, .region-card, .how-card { animation: fadeUp .4s ease both; }
-
-/*impr:polish*/
-.trust-strip { display:flex; flex-wrap:wrap; gap:14px 28px; justify-content:center; padding:18px 20px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); margin-top:-38px; position:relative; z-index:2; max-width:860px; margin-left:auto; margin-right:auto; }
-.trust-strip span { font-size:.92rem; color:var(--muted); }
-.faq-item { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px 24px; margin-bottom:14px; }
-.faq-item h3 { font-size:1.05rem; margin-bottom:6px; }
-.faq-item p { color:var(--muted); font-size:.92rem; }
-.results-note { text-align:center; color:var(--muted); font-size:.85rem; margin-top:18px; }
-html { scroll-behavior:smooth; }
