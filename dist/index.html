@@ -23,7 +23,10 @@
       </nav>
       <a href="#planner" class="btn btn-primary">Start planning →</a>
     </div>
-  </header>
+  <!--impr:theme_toggle-->
+<button id="theme-toggle" aria-label="Toggle theme" onclick="document.body.classList.toggle('light');localStorage.setItem('vtp-theme', document.body.classList.contains('light')?'light':'dark')">🌓</button>
+<script>if(localStorage.getItem('vtp-theme')==='light')document.body.classList.add('light');</script>
+</header>
 
   <!-- ===== Hero ===== -->
   <section class="hero" id="top">
@@ -167,5 +170,8 @@
 <button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div id="scroll-progress"></div>
 <script>const btt=document.getElementById('btt'),sp=document.getElementById('scroll-progress'),on=()=>{const y=scrollY,h=document.documentElement;btt.style.opacity=y>400?1:0;sp.style.width=(y/(h.scrollHeight-h.clientHeight)*100)+'%';};addEventListener('scroll',on);on();</script>
+<!--impr:theme_toggle-->
+<button id="theme-toggle" aria-label="Toggle theme" onclick="document.body.classList.toggle('light');localStorage.setItem('vtp-theme', document.body.classList.contains('light')?'light':'dark')">🌓</button>
+<script>if(localStorage.getItem('vtp-theme')==='light')document.body.classList.add('light');</script>
 </body>
 </html>
