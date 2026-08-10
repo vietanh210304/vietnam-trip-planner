@@ -162,9 +162,5 @@
   </footer>
 
   <script type="module" src="./main.js"></script>
-<!--impr:back_to_top-->
-<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<div id="scroll-progress"></div>
-<script>const btt=document.getElementById('btt'),sp=document.getElementById('scroll-progress'),on=()=>{const y=scrollY,h=document.documentElement;btt.style.opacity=y>400?1:0;sp.style.width=(y/(h.scrollHeight-h.clientHeight)*100)+'%';};addEventListener('scroll',on);on();</script>
 </body>
 </html>

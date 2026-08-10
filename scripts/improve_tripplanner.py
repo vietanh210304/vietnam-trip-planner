@@ -160,11 +160,100 @@ def improv_glow_cta(css):
     return css.rstrip() + "\n\n" + add, "Glow gradient CTAs (Linear/Stripe style)"
 
 
+BTT_MARKER = "<!--impr:back_to_top-->"
+def improv_back_to_top(html):
+    """Back-to-top floating button + scroll progress bar (adds tiny inline JS)."""
+    marker = BTT_MARKER
+    if marker in html: return None
+    btn = (
+        marker + "\n"
+        '<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">↑</button>\n'
+        '<div id="scroll-progress"></div>\n'
+        '<script>const btt=document.getElementById(\'btt\'),sp=document.getElementById(\'scroll-progress\'),'
+        'on=()=>{const y=scrollY,h=document.documentElement;btt.style.opacity=y>400?1:0;'
+        'sp.style.width=(y/(h.scrollHeight-h.clientHeight)*100)+\'%\';};'
+        'addEventListener(\'scroll\',on);on();</script>\n'
+    )
+    return html.replace("</body>", btn + "</body>"), "Back-to-top button + scroll progress"
+
+
+def improv_masonry(css):
+    """Pinterest-style masonry for region grid on wide screens."""
+    marker = "/*impr:masonry*/"
+    if marker in css: return None
+    add = (
+        marker + "\n"
+        ".regions-grid { columns: 3; column-gap: 20px; }\n"
+        ".regions-grid .region-card { break-inside: avoid; margin-bottom: 20px; }\n"
+        ".regions-grid .region-card:nth-child(4n+1) .region-img { height: 200px; }\n"
+        ".regions-grid .region-card:nth-child(4n+2) .region-img { height: 150px; }\n"
+        ".regions-grid .region-card:nth-child(4n+3) .region-img { height: 170px; }\n"
+        ".regions-grid .region-card:nth-child(4n) .region-img { height: 130px; }\n"
+        "@media (max-width: 900px) { .regions-grid { columns: 1; } }\n"
+    )
+    return css.rstrip() + "\n\n" + add, "Pinterest-style masonry region grid"
+
+
+def improv_theme_toggle(html):
+    """Dark/light theme toggle in header (localStorage persisted)."""
+    marker = "<!--impr:theme_toggle-->"
+    if marker in html: return None
+    btn = (
+        marker + "\n"
+        '<button id="theme-toggle" aria-label="Toggle theme" onclick="'
+        'document.body.classList.toggle(\'light\');'
+        'localStorage.setItem(\'vtp-theme\', document.body.classList.contains(\'light\')?\'light\':\'dark\')">🌓</button>\n'
+        '<script>if(localStorage.getItem(\'vtp-theme\')===\'light\')document.body.classList.add(\'light\');</script>\n'
+    )
+    html = html.replace("</header>", btn + "</header>")
+    return html.replace("</body>", btn + "</body>"), "Dark/light theme toggle"
+
+
+def improv_hero_stats(html):
+    """Make hero stats interactive counters (count up on view)."""
+    marker = "<!--impr:hero_counters-->"
+    if marker in html: return None
+    script = (
+        marker + "\n"
+        '<script>const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,'
+        't=parseFloat(el.dataset.count),d=800,s=performance.now();const step=n=>{const p=Math.min((n-s)/d,1);'
+        'el.textContent=Math.round(t*(1-Math.pow(1-p,3)))+(el.dataset.suffix||\'\');p<1&&requestAnimationFrame(step)};'
+        'requestAnimationFrame(step);io.unobserve(el)}}),{threshold:.4});'
+        'document.querySelectorAll(\'[data-count]\').forEach(el=>io.observe(el));</script>\n'
+    )
+    return html.replace("</body>", script + "</body>"), "Count-up hero stats"
+
+
+def improv_light_theme(css):
+    """Light theme styles for the toggle."""
+    marker = "/*impr:light_theme*/"
+    if marker in css: return None
+    add = (
+        marker + "\n"
+        "body.light { --bg:#f6f7fb; --bg2:#eef0f6; --panel:#fff; --panel2:#f3f4fa; "
+        "--line:rgba(20,30,70,.12); --text:#141a2e; --muted:#5a6580; }\n"
+        "#theme-toggle { background:transparent; border:1px solid var(--line); border-radius:999px; "
+        "width:38px; height:38px; font-size:1.1rem; cursor:pointer; }\n"
+        "#btt { position:fixed; right:22px; bottom:22px; width:48px; height:48px; border-radius:50%; border:0; "
+        "background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; font-size:1.3rem; "
+        "box-shadow:0 6px 20px rgba(255,90,95,.45); cursor:pointer; opacity:0; transition:opacity .25s; z-index:60; }\n"
+        "#scroll-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); "
+        "width:0; z-index:70; }\n"
+        ".site-header #theme-toggle { margin-left:auto; }\n"
+    )
+    return css.rstrip() + "\n\n" + add, "Back-to-top/theme styles"
+
+
 IMPROVEMENTS = [improv_why_us, improv_faq, improv_results_note, improv_style_polish,
-                improv_airbnb_cards, improv_glass_nav, improv_glow_cta]
+                improv_airbnb_cards, improv_glass_nav, improv_glow_cta,
+                improv_back_to_top, improv_masonry, improv_theme_toggle,
+                improv_hero_stats, improv_light_theme]
 FILE_FOR = {improv_why_us: INDEX, improv_faq: INDEX, improv_results_note: INDEX,
             improv_style_polish: CSS, improv_airbnb_cards: CSS, improv_glass_nav: CSS,
-            improv_glow_cta: CSS}
+            improv_glow_cta: CSS, improv_back_to_top: INDEX, improv_masonry: CSS,
+            improv_theme_toggle: INDEX, improv_hero_stats: INDEX, improv_light_theme: CSS}
+
+CRON_JOB_ID = "a98c6566a21e"   # tripplanner-improve — pause when work is exhausted
 
 
 def main():
@@ -186,7 +275,10 @@ def main():
         json.dump(state, open(STATE_FILE, "w"), ensure_ascii=False, indent=2)
         # verify site still healthy each tick
         ok, msg = validate_project()
+        # Work exhausted → pause this cron job (user asked: stop cron when nothing improves)
+        subprocess.run(["hermes", "cron", "pause", CRON_JOB_ID], capture_output=True, text=True, timeout=60)
         print(f"✅ TripPlanner: {len(applied)}/{len(IMPROVEMENTS)} improvements applied — nothing new this tick. ({msg})")
+        print(f"⏸️ Cron tripplanner-improve đã tự PAUSE — hết cải tiến để áp. Resume khi thêm improvements mới.")
         return
 
     os.makedirs(BACKUP_DIR, exist_ok=True)
