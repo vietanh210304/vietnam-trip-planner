@@ -185,12 +185,3 @@ html { scroll-behavior:smooth; }
 .btn-primary:hover { box-shadow:0 6px 28px rgba(255,95,109,.55); transform:translateY(-1px); }
 .btn-big { background:linear-gradient(135deg,#7f5af0,#ff5f6d); box-shadow:0 4px 24px rgba(127,90,240,.4); }
 .btn-big:hover { box-shadow:0 8px 34px rgba(127,90,240,.6); }
-
-/*impr:masonry*/
-.regions-grid { columns: 3; column-gap: 20px; }
-.regions-grid .region-card { break-inside: avoid; margin-bottom: 20px; }
-.regions-grid .region-card:nth-child(4n+1) .region-img { height: 200px; }
-.regions-grid .region-card:nth-child(4n+2) .region-img { height: 150px; }
-.regions-grid .region-card:nth-child(4n+3) .region-img { height: 170px; }
-.regions-grid .region-card:nth-child(4n) .region-img { height: 130px; }
-@media (max-width: 900px) { .regions-grid { columns: 1; } }
