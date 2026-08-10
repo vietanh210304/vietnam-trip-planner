@@ -129,6 +129,7 @@ export const INTERESTS = {
   food:      { label: 'Foodie', emoji: '🍜' },
   adventure: { label: 'Adventure', emoji: '🧗' },
   city:      { label: 'City life', emoji: '🌆' },
+  history:   { label: 'History & heritage', emoji: '🏛️' },
 };
 
 export const DURATIONS = {

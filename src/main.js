@@ -118,15 +118,20 @@ function renderRegions() {
   const grid = $('#regions-grid'); grid.innerHTML = '';
   const emo = { hanoi: '🎯', halong: '⛵', ninhbinh: '⛰️', sapa: '🏔️', hue: '🎎', danang: '🌊', hoi_an: '🏮' };
   for (const [k, c] of Object.entries(CITIES)) {
-    const img = REGION_IMAGES[k] ? `<img class="region-img" src="${REGION_IMAGES[k]}" alt="${c.name}" loading="lazy" />` : `<div class="region-emoji">${emo[k]}</div>`;
+    const img = REGION_IMAGES[k] ? `<img class="region-img" src="${REGION_IMAGES[k]}" alt="${c.name}" />` : `<div class="region-emoji">${emo[k]}</div>`;
     grid.insertAdjacentHTML('beforeend',
       `<div class="region-card">${img}<h3>${c.name}</h3><p>${c.tagline}</p>` +
-      `<div class="region-tags">${c.tags.map((t) => `<span>${INTERESTS[t].emoji}</span>`).join('')}</div></div>`);
+      `<div class="region-tags">${c.tags.map((t) => `<span>${INTERESTS[t]?.emoji ?? '📍'}</span>`).join('')}</div></div>`);
   }
 }
 
 // ── Wire up ────────────────────────────────────────────────────────────────
+window.__errs = [];
+window.addEventListener('error', (e) => window.__errs.push(e.message));
 renderDuration(); renderInterests(); renderBudget(); renderRegions();
+window.renderRegions = renderRegions;   // debug hook (removable)
+window.__cards = () => document.querySelectorAll('.region-card').length;
+window.__cities = () => Object.keys(CITIES).join(',');
 $('#btn-next').addEventListener('click', () => showStep(state.step + 1));
 $('#btn-back').addEventListener('click', () => showStep(state.step - 1));
 $('#btn-generate').addEventListener('click', renderResults);
