@@ -1,17 +1,19 @@
 {
   "applied": [
-    "improv_back_to_top",
-    "improv_theme_toggle",
-    "improv_why_us",
-    "improv_hero_stats",
-    "improv_results_note",
-    "improv_glass_nav",
     "improv_polish",
-    "improv_glow_cta",
-    "improv_airbnb_cards",
     "improv_style_polish",
+    "improv_hero_stats",
+    "improv_glow_cta",
+    "improv_light_theme",
+    "improv_back_to_top",
+    "improv_glass_nav",
+    "improv_masonry",
+    "improv_why_us",
+    "improv_hero_counters",
+    "improv_results_note",
+    "improv_theme_toggle",
     "improv_faq",
-    "improv_masonry"
+    "improv_airbnb_cards"
   ],
-  "last_run": 1786377488.6553307
+  "last_run": 1786377492.2657773
 }
