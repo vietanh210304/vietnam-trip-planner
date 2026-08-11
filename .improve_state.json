@@ -1,21 +1,22 @@
 {
   "applied": [
+    "improv_results_note",
     "improv_airbnb_cards",
-    "improv_masonry",
+    "improv_style_polish",
+    "improv_glow_cta",
+    "improv_back_to_top",
+    "improv_footer_year",
+    "improv_theme_toggle",
+    "improv_hero_counters",
+    "improv_hero_stats",
     "improv_why_us",
     "improv_glass_nav",
-    "improv_city_modal",
-    "improv_footer_year",
-    "improv_glow_cta",
-    "improv_theme_toggle",
-    "improv_back_to_top",
-    "improv_hero_counters",
     "improv_faq",
-    "improv_polish",
-    "improv_results_note",
     "improv_light_theme",
-    "improv_style_polish",
-    "improv_hero_stats"
+    "improv_city_modal",
+    "improv_og_meta",
+    "improv_masonry",
+    "improv_polish"
   ],
-  "last_run": 1786437374.852522
+  "last_run": 1786437417.829963
 }

@@ -8,8 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/vietnam-trip-planner/assets/index-CvGQURgr.js"></script>
-  <link rel="stylesheet" crossorigin href="/vietnam-trip-planner/assets/index-DImG2iEa.css">
 </head>
 <body>
   <!-- ===== Header ===== -->
@@ -167,6 +165,7 @@
   <!--impr:footer_year-->
 <span class="footer-year"></span><script>document.querySelector('.footer-year').textContent=new Date().getFullYear();</script></footer>
 
+  <script type="module" src="./main.js"></script>
 <!--impr:back_to_top-->
 <button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div id="scroll-progress"></div>
