@@ -120,10 +120,41 @@ function renderRegions() {
   for (const [k, c] of Object.entries(CITIES)) {
     const img = REGION_IMAGES[k] ? `<img class="region-img" src="${REGION_IMAGES[k]}" alt="${c.name}" />` : `<div class="region-emoji">${emo[k]}</div>`;
     grid.insertAdjacentHTML('beforeend',
-      `<div class="region-card">${img}<h3>${c.name}</h3><p>${c.tagline}</p>` +
+      `<div class="region-card" onclick="openCityModal('${k}')">${img}<h3>${c.name}</h3><p>${c.tagline}</p>` +
+      `<p class="region-detail-hint">Click for details →</p>` +
       `<div class="region-tags">${c.tags.map((t) => `<span>${INTERESTS[t]?.emoji ?? '📍'}</span>`).join('')}</div></div>`);
   }
 }
+
+// ── City detail modal ─────────────────────────────────────────────────────
+function openCityModal(key) {
+  const c = CITIES[key];
+  const img = REGION_IMAGES[key];
+  const modal = $('#city-modal');
+  $('#city-modal-img').src = img || '';
+  $('#city-modal-img').alt = c.name;
+  $('#city-modal-name').textContent = c.name;
+  $('#city-modal-tagline').textContent = c.tagline;
+  $('#city-modal-blurb').textContent = c.blurb || '';
+  $('#city-modal-besttime').textContent = c.bestTime || 'Year-round';
+  $('#city-modal-days').textContent = `${c.day} days suggested`;
+  const daily = c.costs.stay + c.costs.food + c.costs.sight;
+  $('#city-modal-cost').textContent = `$${daily} (stay+food+sight)`;
+  const act = c.activities.slice(0, 6)
+    .map((a) => `<li><span>${INTERESTS[a[0]]?.emoji ?? '📍'} ${a[1]}</span><span class="act-cost">~${a[3]}h · $${a[2]}</span></li>`)
+    .join('');
+  $('#city-modal-act-list').innerHTML = act;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCityModal(); });
+}
+function closeCityModal() {
+  const modal = $('#city-modal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+window.openCityModal = openCityModal;
+window.closeCityModal = closeCityModal;
 
 // ── Wire up ────────────────────────────────────────────────────────────────
 window.__errs = [];

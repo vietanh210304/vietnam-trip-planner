@@ -5,6 +5,8 @@
 export const CITIES = {
   hanoi: {
     name: 'Hà Nội', tagline: 'Old Quarter charm · lakes · history',
+    blurb: 'The soul of Vietnam — a thousand-year-old capital where French boulevards meet narrow alleyways, steaming pho stalls and the quiet calm of Hoan Kiem Lake. Start here: the Old Quarter is walkable and electric.',
+    bestTime: 'Oct–Apr (cool, dry) · Nov for golden banyan trees',
     tags: ['culture', 'history', 'food', 'city'],
     day: 1.5,        // base days to "do" this city
     costs: { stay: 25, food: 15, sight: 12, inout: { budget: 35, mid: 70 } },
@@ -27,6 +29,8 @@ export const CITIES = {
   },
   halong: {
     name: 'Hạ Long', tagline: 'Emerald bay · limestone karsts · cruises',
+    blurb: 'A UNESCO wonder: nearly 2,000 limestone islands rise from jade-green water. Most visitors see it on a day cruise; the magic really lands on an overnight junk with a sunset from the deck.',
+    bestTime: 'Mar–May & Sep–Nov (calm, clear) · avoid summer storms',
     tags: ['nature', 'beach', 'adventure'],
     day: 1.5,
     costs: { stay: 45, food: 18, sight: 25, inout: { budget: 35, mid: 70 } },
@@ -41,6 +45,8 @@ export const CITIES = {
   },
   ninhbinh: {
     name: 'Ninh Bình', tagline: 'Halong-on-land · rice paddies · caves',
+    blurb: 'Ha Long Bay without the boats: dramatic karst mountains over emerald rice fields. Trang An’s rowboat glides through cave after cave — many call it the most beautiful corner of the North.',
+    bestTime: 'Nov–Apr (dry) · May–Jun for golden rice fields',
     tags: ['nature', 'adventure', 'history'],
     day: 1.5,
     costs: { stay: 20, food: 12, sight: 15, inout: { budget: 25, mid: 50 } },
@@ -58,6 +64,8 @@ export const CITIES = {
   },
   sapa: {
     name: 'Sa Pa', tagline: 'Terraced rice fields · Fansipan · hill tribes',
+    blurb: 'High in the northwest mountains, Sa Pa is a patchwork of rice terraces and Hmong villages draped over valleys. Cool air, mountain mist, and the roof of Indochina — Fansipan — on a clear day.',
+    bestTime: 'Mar–May (green terraces) · Sep–Oct (golden harvest)',
     tags: ['nature', 'adventure'],
     day: 2.5,
     costs: { stay: 25, food: 14, sight: 20, inout: { budget: 30, mid: 60 } },
@@ -72,6 +80,8 @@ export const CITIES = {
   },
   hue: {
     name: 'Huế', tagline: 'Imperial city · royal tombs · riverside',
+    blurb: 'Vietnam’s imperial capital under the Nguyen dynasty — a walled Citadel, silent royal tombs, and the slow Perfume River. Huế is history you can touch, plus arguably the best food in Vietnam.',
+    bestTime: 'Sep–Mar (dry & cool) · Feb–Mar festival season',
     tags: ['history', 'culture', 'food'],
     day: 2,
     costs: { stay: 22, food: 13, sight: 18, inout: { budget: 30, mid: 60 } },
@@ -89,6 +99,8 @@ export const CITIES = {
   },
   danang: {
     name: 'Đà Nẵng', tagline: 'Beach city · bridges · Marble Mountains',
+    blurb: 'Vietnam’s most liveable city: 30 km of sandy beach along a modern skyline, the fire-breathing Dragon Bridge, and mountain escapes — Marble Mountains, Son Tra, and Ba Na Hills close by.',
+    bestTime: 'Feb–Aug (sunny, beach weather) · avoid Sep–Dec rains',
     tags: ['beach', 'city', 'food', 'adventure'],
     day: 2,
     costs: { stay: 28, food: 15, sight: 15, inout: { budget: 30, mid: 60 } },
@@ -104,6 +116,8 @@ export const CITIES = {
   },
   hoi_an: {
     name: 'Hội An', tagline: 'Lantern town · tailors · ancient alleys',
+    blurb: 'A riverside trading town frozen in the 15th century: yellow houses, silk lanterns, and no motorbikes in the old core. Most magical at dusk when the lanterns light the river.',
+    bestTime: 'Feb–Apr (dry, mild) · full-moon lantern festival monthly',
     tags: ['culture', 'food', 'city', 'beach'],
     day: 1.5,
     costs: { stay: 26, food: 14, sight: 12, inout: { budget: 25, mid: 50 } },

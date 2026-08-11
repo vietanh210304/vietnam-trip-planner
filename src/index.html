@@ -174,5 +174,28 @@
 <script>if(localStorage.getItem('vtp-theme')==='light')document.body.classList.add('light');</script>
 <!--impr:hero_counters-->
 <script>const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=parseFloat(el.dataset.count),d=800,s=performance.now();const step=n=>{const p=Math.min((n-s)/d,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)))+(el.dataset.suffix||'');p<1&&requestAnimationFrame(step)};requestAnimationFrame(step);io.unobserve(el)}}),{threshold:.4});document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));</script>
+
+<!--impr:city_modal-->
+<div id="city-modal" class="city-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="city-modal-backdrop" onclick="closeCityModal()"></div>
+  <div class="city-modal-panel" role="document">
+    <button class="city-modal-close" aria-label="Close" onclick="closeCityModal()">✕</button>
+    <img id="city-modal-img" class="city-modal-img" alt="" />
+    <div class="city-modal-body">
+      <h3 id="city-modal-name"></h3>
+      <p class="city-modal-tagline" id="city-modal-tagline"></p>
+      <p class="city-modal-blurb" id="city-modal-blurb"></p>
+      <div class="city-modal-meta">
+        <div class="city-modal-stat"><span class="city-modal-stat-label">🕐 Best time</span><span id="city-modal-besttime"></span></div>
+        <div class="city-modal-stat"><span class="city-modal-stat-label">📅 Suggested</span><span id="city-modal-days"></span></div>
+        <div class="city-modal-stat"><span class="city-modal-stat-label">💰 Daily budget</span><span id="city-modal-cost"></span></div>
+      </div>
+      <div class="city-modal-activities">
+        <h4>Top things to do</h4>
+        <ul id="city-modal-act-list"></ul>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
