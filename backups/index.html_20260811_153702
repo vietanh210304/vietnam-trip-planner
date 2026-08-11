@@ -203,7 +203,5 @@
     </div>
   </div>
 </div>
-<!--impr:faq_expand-->
-<script>document.querySelectorAll('.faq-item').forEach(it=>{const a=it.querySelector('p');if(a){a.style.display='none';it.querySelector('h3').style.cursor='pointer';it.querySelector('h3').onclick=()=>{a.style.display=a.style.display==='none'?'block':'none';};}});</script>
 </body>
 </html>
