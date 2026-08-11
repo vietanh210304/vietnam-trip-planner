@@ -222,6 +222,3 @@ body.light { --bg:#f6f7fb; --bg2:#eef0f6; --panel:#fff; --panel2:#f3f4fa; --line
 #btt { position:fixed; right:22px; bottom:22px; width:48px; height:48px; border-radius:50%; border:0; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; font-size:1.3rem; box-shadow:0 6px 20px rgba(255,90,95,.45); cursor:pointer; opacity:0; transition:opacity .25s; z-index:60; }
 #scroll-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); width:0; z-index:70; }
 .site-header #theme-toggle { margin-left:auto; }
-
-/*impr:nav_scroll*/
-section { scroll-margin-top: 90px; }

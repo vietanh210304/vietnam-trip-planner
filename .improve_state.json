@@ -1,23 +1,25 @@
 {
   "applied": [
-    "improv_faq_expand",
-    "improv_footer_year",
-    "improv_why_us",
-    "improv_og_meta",
-    "improv_style_polish",
-    "improv_back_to_top",
     "improv_hero_counters",
-    "improv_light_theme",
-    "improv_glow_cta",
-    "improv_hero_stats",
-    "improv_city_modal",
-    "improv_masonry",
-    "improv_polish",
-    "improv_airbnb_cards",
-    "improv_theme_toggle",
-    "improv_faq",
     "improv_glass_nav",
-    "improv_results_note"
+    "improv_hero_stats",
+    "improv_light_theme",
+    "improv_results_note",
+    "improv_og_meta",
+    "improv_masonry",
+    "improv_theme_toggle",
+    "improv_nav_scroll_css",
+    "improv_style_polish",
+    "improv_faq_expand",
+    "improv_why_us",
+    "improv_faq",
+    "improv_glow_cta",
+    "improv_polish",
+    "improv_city_modal",
+    "improv_airbnb_cards",
+    "improv_nav_scroll",
+    "improv_footer_year",
+    "improv_back_to_top"
   ],
-  "last_run": 1786437423.324473
+  "last_run": 1786438093.1918252
 }

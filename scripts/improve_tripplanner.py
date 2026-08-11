@@ -340,6 +340,17 @@ def main():
         applied.add("improv_" + m)
 
     fn = next((f for f in IMPROVEMENTS if f.__name__ not in applied), None)
+    # skip improvements that return None (no-op): try the next one
+    while fn is not None:
+        content = open(FILE_FOR[fn]).read()
+        try:
+            probe = fn(content)
+        except Exception:
+            probe = None
+        if probe is not None:
+            break
+        applied.add(fn.__name__)   # no-op → mark as applied so we move on
+        fn = next((f for f in IMPROVEMENTS if f.__name__ not in applied), None)
     if fn is None:
         state["last_run"] = time.time()
         json.dump(state, open(STATE_FILE, "w"), ensure_ascii=False, indent=2)
