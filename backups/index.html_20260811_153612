@@ -162,8 +162,7 @@
       <p>🇻🇳 VietnamTripPlanner — a demo planner. Prices are rough estimates in USD.</p>
       <p>Built with vanilla JS + Vite. <a href="https://github.com/vietanh210304/vietnam-trip-planner" target="_blank" rel="noopener">Source on GitHub</a></p>
     </div>
-  <!--impr:footer_year-->
-<span class="footer-year"></span><script>document.querySelector('.footer-year').textContent=new Date().getFullYear();</script></footer>
+  </footer>
 
   <script type="module" src="./main.js"></script>
 <!--impr:back_to_top-->

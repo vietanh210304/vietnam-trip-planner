@@ -244,14 +244,84 @@ def improv_light_theme(css):
     return css.rstrip() + "\n\n" + add, "Back-to-top/theme styles"
 
 
+def improv_footer_year(html):
+    """Dynamic year in footer."""
+    marker = "<!--impr:footer_year-->"
+    if marker in html: return None
+    el = marker + "\n<span class=\"footer-year\"></span><script>document.querySelector('.footer-year').textContent=new Date().getFullYear();</script>"
+    return html.replace("</footer>", el + "</footer>"), "Dynamic footer year"
+
+
+def improv_og_meta(html):
+    """OG/Twitter meta tags for share previews."""
+    marker = "<!--impr:og_meta-->"
+    if marker in html: return None
+    if "<meta property=\"og:title\"" in html: return None
+    meta = (
+        marker + "\n"
+        '<meta property="og:title" content="Vietnam Trip Planner — Build your perfect itinerary" />\n'
+        '<meta property="og:description" content="Answer a few questions and get a personalized Vietnam itinerary — routes, transport, costs." />\n'
+        '<meta property="og:type" content="website" />\n'
+        '<meta name="twitter:card" content="summary" />\n'
+    )
+    return html.replace("</head>", meta + "</head>"), "OG + Twitter meta tags"
+
+
+def improv_faq_expand(html):
+    """FAQ items open/close on click."""
+    marker = "<!--impr:faq_expand-->"
+    if marker in html: return None
+    script = (
+        marker + "\n"
+        '<script>document.querySelectorAll(\'.faq-item\').forEach(it=>{const a=it.querySelector(\'p\');if(a){a.style.display=\'none\';'
+        'it.querySelector(\'h3\').style.cursor=\'pointer\';it.querySelector(\'h3\').onclick=()=>{a.style.display=a.style.display===\'none\'?\'block\':\'none\';};}});</script>\n'
+    )
+    return html.replace("</body>", script + "</body>"), "Expandable FAQ items"
+
+
+def improv_nav_scroll(html):
+    """Nav links smooth-scroll to sections."""
+    marker = "<!--impr:nav_scroll-->"
+    if marker in html: return None
+    # links already have href="#..." anchors; ensure smooth behavior via CSS class on html (scroll-smooth already present)
+    # add scroll-margin-top so sticky header doesn't cover section titles
+    # (CSS handled separately in improv_nav_scroll_css)
+    return None
+
+
+def improv_nav_scroll_css(css):
+    """scroll-margin-top for anchored sections (sticky header offset)."""
+    marker = "/*impr:nav_scroll*/"
+    if marker in css: return None
+    add = marker + "\n" + "section { scroll-margin-top: 90px; }\n"
+    return css.rstrip() + "\n\n" + add, "Anchor scroll offset for sticky header"
+
+
+def improv_jsonld(html):
+    """JSON-LD structured data for SEO."""
+    marker = "<!--impr:jsonld-->"
+    if marker in html: return None
+    ld = (
+        marker + "\n"
+        '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite",'
+        '"name":"Vietnam Trip Planner","description":"Personalized Vietnam itineraries — routes, transport, budgets.",'
+        '"url":"https://vietanh210304.github.io/vietnam-trip-planner/"}</script>\n'
+    )
+    return html.replace("</head>", ld + "</head>"), "JSON-LD structured data"
+
+
 IMPROVEMENTS = [improv_why_us, improv_faq, improv_results_note, improv_style_polish,
                 improv_airbnb_cards, improv_glass_nav, improv_glow_cta,
                 improv_back_to_top, improv_masonry, improv_theme_toggle,
-                improv_hero_stats, improv_light_theme]
+                improv_hero_stats, improv_light_theme,
+                improv_footer_year, improv_og_meta, improv_faq_expand,
+                improv_nav_scroll, improv_nav_scroll_css, improv_jsonld]
 FILE_FOR = {improv_why_us: INDEX, improv_faq: INDEX, improv_results_note: INDEX,
             improv_style_polish: CSS, improv_airbnb_cards: CSS, improv_glass_nav: CSS,
             improv_glow_cta: CSS, improv_back_to_top: INDEX, improv_masonry: CSS,
-            improv_theme_toggle: INDEX, improv_hero_stats: INDEX, improv_light_theme: CSS}
+            improv_theme_toggle: INDEX, improv_hero_stats: INDEX, improv_light_theme: CSS,
+            improv_footer_year: INDEX, improv_og_meta: INDEX, improv_faq_expand: INDEX,
+            improv_nav_scroll: INDEX, improv_nav_scroll_css: CSS, improv_jsonld: INDEX}
 
 CRON_JOB_ID = "a98c6566a21e"   # tripplanner-improve — pause when work is exhausted
 
